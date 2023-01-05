@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { CardShareDialog } from './CardShareDialog';
 import avatarImg from "../../assets/avatar-michelle.jpg";
-import shareIcon from "../../assets/icon-share.svg";
 import { useContext } from 'react';
 import { CardContext } from '../../context/CardContext';
 
@@ -48,13 +47,14 @@ const ProfileInfo = styled.div`
     line-height: 20px;
     letter-spacing: 0.121875px;
     color: #9DAEC2;
-  }
+  } 
 `
 
 const ProfileButton = styled.button`
   width: 32px;
   height: 32px;
   border: none;
+  outline: none;
   border-radius: 50%;
   background: #e0e5e9;
   cursor: pointer;
@@ -63,7 +63,11 @@ const ProfileButton = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 3;
-`
+
+  &:focus {
+    outline: none;
+  }  
+`;
 
 export const CardProfile = () => {
   const { showDialog, setShowDialog  } = useContext(CardContext)!;
@@ -76,10 +80,16 @@ export const CardProfile = () => {
         <p className="profile__date">28 Jun 2020</p>
       </div>
     </ProfileInfo>
-          
-    <ProfileButton onClick={() => {setShowDialog(prevState => !prevState)}}>
-      <img src={shareIcon} alt="share on social media" />
-    </ProfileButton>
+
+    <ProfileButton onClick={() => setShowDialog(prevState => !prevState)} 
+      style={{backgroundColor: `${showDialog ? "#6E8098" : "#e0e5e9"}`}}
+    >
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13">
+          <path fill={`${showDialog ? '#fff' : '#6E8098'}`} d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"/>
+        </svg>
+      </div>
+    </ProfileButton>  
 
     <CardShareDialog />
   </ProfileContainer>

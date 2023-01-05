@@ -22,7 +22,7 @@ const CardContainer = styled.div`
       border-radius: 10px 10px 0 0;
     }
 
-    .card__texts-container{
+    .card__info{
       padding: 36px 32px 0 32px;
     }
 

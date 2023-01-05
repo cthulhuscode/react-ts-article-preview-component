@@ -9,7 +9,7 @@ interface IShareContainerProps{
   showDialog: boolean
 }
 
-const ShareContainer = styled.div<IShareContainerProps>`
+const ShareContainer = styled.div`
   width: 248px;
   height: 55px;
   
@@ -26,8 +26,6 @@ const ShareContainer = styled.div<IShareContainerProps>`
   top: -70px;
   right: -68px;
   z-index: 2;
-
-  display: ${props => props.showDialog}
 
   .share-dialog__primary-text{
     font-weight: 500;
@@ -55,7 +53,7 @@ const ShareContainer = styled.div<IShareContainerProps>`
 export const CardShareDialog = () => {
   const { showDialog  } = useContext(CardContext)!;
 
-  return <ShareContainer className='profile__share-dialog' showDialog={showDialog}>
+  return <ShareContainer className='profile__share-dialog' style={{display: !showDialog ? "none" : 'flex'}}>
       <span className="share-dialog__primary-text">SHARE</span>
       <img className="share-dialog__icon" src={fbIcon} alt="share in facebook" />
       <img className="share-dialog__icon" src={twIcon} alt="share in twitter" />
